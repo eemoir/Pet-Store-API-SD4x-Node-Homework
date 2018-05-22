@@ -11,50 +11,32 @@ This assignment continues the “pet store” theme from previous assignments. I
 
 In completing this assignment, you will:
 
-Learn how to set up Node, Express, Mongo, and related packages
+- Learn how to set up Node, Express, Mongo, and related packages
 
-Apply what you have learned about developing a Node Express app and using various objects and functions
+- Apply what you have learned about developing a Node Express app and using various objects and functions
 
-Implement JavaScript queries using Mongoose to retrieve data from a MongoDB database
+- Implement JavaScript queries using Mongoose to retrieve data from a MongoDB database
 
-Create a server-side Web application that reads data from an incoming HTTP request and sends back JSON data in an HTTP response
+- Create a server-side Web application that reads data from an incoming HTTP request and sends back JSON data in an HTTP response
 
 Getting Started
 
 To complete this assignment, you will need to set up a development environment that uses Node, Express, Mongoose, and MongoDB. We recommend that you do this on your local computer as follows; you will likely need sudo/root access for each of these steps:
 
- 
+- Install Node.js locally by downloading it from https://nodejs.org/en/download/>
 
-Install Node.js locally by downloading it from https://nodejs.org/en/download/>
+- From the Terminal, Command Prompt, etc. update Node Package Manager by typing the command: npm install npm –g
 
-From the Terminal, Command Prompt, etc. update Node Package Manager by typing the command: npm install npm –g
+- Create a new folder or directory for your project, then navigate to it using Terminal, Command Prompt, etc.
 
-Create a new folder or directory for your project, then navigate to it using Terminal, Command Prompt, etc.
+- Initialize the project by typing the command: npm init
 
-Initialize the project by typing the command: npm init
+- Install Express by typing the command: npm install express --save
 
-Install Express by typing the command: npm install express --save
-
-Install Mongoose by typing the command: npm install mongoose --save
+- Install Mongoose by typing the command: npm install mongoose --save
 
 If you would like to install MongoDB locally, download the "Community Server" version from https://www.mongodb.com/download-center#community >and follow the instructions for installing it and running it; alternatively, you can create an account to use a cloud service such as MongoDB Atlas (https://www.mongodb.com/cloud/atlas>); either way, be sure to note the hostname and port number of where your database instance is running
 
-Once you’ve set up your environment, download the three files you will need for this assignment:
-
->right-click this link and save "index.js" to your computer
->right-click this link and save "Animal.js" to your computer
->right-click this link and save "Toy.js" to your computer
- 
-
-Copy all three files> to the directory that is the root of your Node Express project, i.e. the directory where you ran “npm init”. 
-
-Having trouble setting up your environment?
-
-You can do this assignment using the Codio grading platform, which we have configured with Node, Express, Mongoose, and MongoDB.
-
-Click the "BEGIN SUBMISSION" button at the bottom of the screen, which will take you to Codio.
-
-Once you're there, use the "Filetree" on the left side of the screen to expand the "dev" folder, then click "Instructions.md", which will open up the file that includes instructions for completing this assignment on Codio.
 
 The index.js file is the main file for your Node Express app. It includes the necessary packages, sets up the web server to listen on port 3000, and defines a route that sends back a simple JSON object for all HTTP requests.
 
@@ -66,11 +48,13 @@ Then use your web browser to access http://localhost:3000> and you should see a 
 
 Animal.js and Toy.js define the schema that you will need for your Mongo database. You may modify the host/port/database configuration that is passed to mongoose.connect> for your particular environment, but do not change the Schema definitions as these will be used by the grader when you submit.
 
+
 Activity
 
 In this assignment you will implement four Web APIs using Node and Express to handle the HTTP requests and responses, and Mongoose to handle the interaction with the MongoDB database.
 
 The specifications of the APIs are provided below. We recommend that you attempt them in the order in which they are described. Note that in all but the first instance, your code will need to construct the JSON object that is sent back in the response, as opposed to just sending back the data that comes out of MongoDB.
+
 
 /findToy
 
@@ -85,6 +69,7 @@ Description:
 This API finds and returns the Toy in the “toys” collection with the ID that matches the id> parameter. It should return the entire Toy document/object, including all properties that are stored in the database.
 
 If the id> parameter is unspecified, or if there is no Toy that has a matching ID, this API should return an empty object.
+
 
 /findAnimals
 
@@ -110,79 +95,6 @@ However, if the species>, trait>, and gender> parameters are all unspecified, th
 
 Likewise, if there are no Animals that match all of the specified parameters, the API should return an empty object.
 
-Examples: Consider the following collection of Animals:
-
-name
-
-species
-
-Breed
-
-gender
-
-age
-
-traits
-
->“Cooper”
-
->“Dog”
-
->“Catahoula”
-
->“male”
-
->11
-
->[“crazy”, “funny”]
-
->“Lola”
-
->“Dog”
-
->“Beagle”
-
->“female”
-
->5
-
->[“loyal”, “friendly”]
-
->“Garfield”
-
->“Cat”
-
->“Tabby”
-
->“male”
-
->39
-
->[“lazy”, “hungry”]
-
->“Felix”
-
->“Cat”
-
->“Tuxedo”
-
->“male”
-
->98
-
->[“funny”, “loyal”]
-
-Example #1
-
-Request: /findAnimals?species=Dog&trait=loyal&gender=female
-
-Response: [{"name":"Lola","species":"Dog","breed":"Beagle","gender":"female","age":5}]
-
-Example #2
-
-Request: /findAnimals?trait=funny
-
-Response: [{"name":"Cooper","species":"Dog","breed":"Catahoula","gender":"male","age":11},{"name":"Felix","species":"Cat","breed":"Tuxedo","gender":"male","age":98}]
 
 /animalsYoungerThan
 
@@ -205,6 +117,7 @@ The return value is an object that has two properties:
 If there are no Animals that have an age less than the age> parameter, then the API should return an object that has a “count” property set to 0, but no “names” property
 
 If the age> parameter is unspecified or non-numeric, then the API should return an empty object
+
 
 /calculatePrice
 
@@ -244,44 +157,6 @@ If all id>/qty> parameters are to be ignored because of the above, then the API 
 
 The API should return an empty object if:
 
-There are no query parameters specified in the request
+- There are no query parameters specified in the request
 
-The number of id> parameters does not match the number of qty> parameters
-
-Examples: Consider the following collection of Toys:
-
-ID
-
-Name
-
-Price
-
->“123”
-
->“Dog chew toy”
-
->10.99
-
->“456”
-
->“Dog pillow”
-
->25.99
-
-Example #1
-
-Request: /calculatePrice?id[0]=123&qty[0]=2&id[1]=456&qty[1]=3
-
-Response: {"items":[{"item":"123","qty":"2","subtotal":21.98},{"item":"456","qty":"3","subtotal":77.97}],"totalPrice":99.95}
-
-Example #2
-
-Request: /calculatePrice?id[0]=123&qty[0]=1&id[1]=xxxx&qty[1]=3
-
-Response: {"items":[{"item":"123","qty":"1","subtotal":10.99}],> "totalPrice":10.99}
-
-Example #3
-
-Request: /calculatePrice?id[0]=abc&qty[0]=1&id[1]=456&qty[1]=dog
-
-Response: {"items":[],"totalPrice":0}
+- The number of id> parameters does not match the number of qty> parameters
